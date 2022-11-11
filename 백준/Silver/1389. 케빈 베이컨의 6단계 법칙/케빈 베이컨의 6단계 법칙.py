@@ -4,10 +4,10 @@ input = sys.stdin.readline
 
 N, M = map(int, input().split())
 
-graph = [[False]*(N+1) for _ in range(N+1)]
+graph = defaultdict(bool)
 for _ in range(M):
     s, e = map(int, input().split())
-    graph[s][e] = graph[e][s] = True
+    graph[(s,e)] = graph[(e,s)] = True
 
 def bfs(s):
     visited = [False]*(N+1)
@@ -20,7 +20,7 @@ def bfs(s):
     while q:
         s, d = q.popleft()
         for e in range(1, N+1):
-            if not visited[e] and graph[s][e]:
+            if not visited[e] and graph[(s,e)]:
                 q.append((e,d+1))
                 visited[e] = True
                 cnt += d+1
