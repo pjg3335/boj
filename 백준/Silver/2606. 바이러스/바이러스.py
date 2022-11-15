@@ -1,10 +1,10 @@
 import sys
-from collections import defaultdict, deque
+from collections import  deque
 input = sys.stdin.readline
 
 com_cnt = int(input())
 N = int(input())
-graph = defaultdict(list)
+graph = [[] for _ in range(com_cnt+1)]
 for _ in range(N):
     s, e = map(int, input().split())
     graph[s].append(e)
