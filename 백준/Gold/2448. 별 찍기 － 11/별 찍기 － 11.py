@@ -1,22 +1,17 @@
 N = int(input())
-
-W = 5*(N//3)+(N//3)-1
-H = N
-arr = [[' ']*W for _ in range(H)]
-
+arr = [[' ']*(N*2-1) for _ in range(N)]
 vectors = ((2,0),(1,1),(3,1),(0,2),(1,2),(2,2),(3,2),(4,2))
 
-def recursion(x, y, w, h):
+def recursion(x, y, h):
     if h==3:
         for vx, vy in vectors: arr[y+vy][x+vx] = '*'
         return
-    vx = (w+1)//4
-    vy = h//2
-    recursion(x+vx, y, w//2, h//2)
-    recursion(x, y+vy, w//2, h//2)
-    recursion(x+vx*2, y+vy, w//2, h//2)
+    h = h//2
+    recursion(x+h, y, h)
+    recursion(x, y+h, h)
+    recursion(x+h*2, y+h, h)
 
-recursion(0, 0, W, H)
+recursion(0, 0, N)
 
-for i in map(lambda a: ''.join(a), arr):
-    print(i)
+for a in arr:
+    print(''.join(a))
