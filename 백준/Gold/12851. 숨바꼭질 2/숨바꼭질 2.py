@@ -2,7 +2,6 @@ from collections import deque
 
 N, K = map(int, input().split())
 
-
 def bfs(s):
     visited_d = [-1]*100_001
     q = deque()
@@ -21,12 +20,10 @@ def bfs(s):
 
         for e in [s-1, s+1, s*2]:
             if 0<=e<100_001:
-                if visited_d[e] == -1: 
-                    visited_d[e] = d+1              
+                if visited_d[e] == -1 or visited_d[e] == d+1:
+                    visited_d[e] = d+1
                     q.append((e, d+1))
-                elif visited_d[e] == d+1:
-                    q.append((e, d+1))
-    
+                    
     return (visited_d[K], cnt)
 
 d, cnt = bfs(N)
